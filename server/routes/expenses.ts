@@ -13,7 +13,6 @@ const createPostSchema =  expenseSchema.omit({id: true})
 
 type Expense = z.infer<typeof expenseSchema>
 
-
 const fakeExpensesData: Expense[] = [
     { id: 1, title: "Rent", amount: 1200 },
     { id: 2, title: "Groceries", amount: 250 },

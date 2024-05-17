@@ -1,10 +1,10 @@
 {
   "name": "app",
-  "module": "index.ts",
+  "module": "server/index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun index.ts",
-    "build": "bun --watch index.ts"
+    "start": "bun server/index.ts",
+    "build": "bun --watch server/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
