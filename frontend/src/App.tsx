@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from 'react'
+
 import {
     Card,
     CardContent,
@@ -13,44 +11,33 @@ import {
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [totalSpent, setTotalSpent] = useState(0)
 
+
+    useEffect(() => {
+        async function fetchTotal () {
+            const res = await fetch("/api/expenses/total-spent")
+            const data = await res.json()
+            setTotalSpent(data.expenses)
+        }
+
+        fetchTotal()
+    }, [])
   return (
     <>
-        <Card className="w-[350px]">
+        <Card>
             <CardHeader>
-                <CardTitle>Create project</CardTitle>
-                <CardDescription>Deploy your new project in one-click.</CardDescription>
+                <CardTitle>Card Title</CardTitle>
+                <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
-                <form>
-                    <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" placeholder="Name of your project" />
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="framework">Framework</Label>
-                            <Select>
-                                <SelectTrigger id="framework">
-                                    <SelectValue placeholder="Select" />
-                                </SelectTrigger>
-                                <SelectContent position="popper">
-                                    <SelectItem value="next">Next.js</SelectItem>
-                                    <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                                    <SelectItem value="astro">Astro</SelectItem>
-                                    <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
-                </form>
+                <p className="text-3xl text-amber-600">{totalSpent}</p>
             </CardContent>
-            <CardFooter className="flex justify-between">
-                <Button variant="outline">Cancel</Button>
-                <Button>Deploy</Button>
+            <CardFooter>
+                <p>Card Footer</p>
             </CardFooter>
         </Card>
+
     </>
   )
 }
