@@ -1,16 +1,16 @@
-import { Hono } from 'hono'
-import { logger } from "hono/logger"
-import { expenseRoute } from "./routes/expenses.ts";
-import { serveStatic } from 'hono/bun'
+import { Hono } from "hono";
+import { logger } from "hono/logger";
+import { serveStatic } from "hono/bun";
+import { expensesRoute } from "./routes/expenses";
 
-const app = new Hono()
+const app = new Hono();
 
-app.use("*", logger())
+app.use("*", logger());
 
-app.use('*', serveStatic({ root: './frontend/dist' }))
-app.get('*', serveStatic({ path: './frontend/dist/index.html' }))
+const apiRoutes = app.basePath("/api").route("/expenses", expensesRoute)
 
-app.route("/api/expenses", expenseRoute)
+app.get("*", serveStatic({ root: "./frontend/dist" }));
+app.get("*", serveStatic({ path: "./frontend/dist/index.html" }));
 
-export default app
-
+export default app;
+export type ApiRoutes = typeof apiRoutes

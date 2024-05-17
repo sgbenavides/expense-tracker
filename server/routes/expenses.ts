@@ -20,7 +20,7 @@ const fakeExpensesData: Expense[] = [
     { id: 4, title: "Fuel", amount: 100 },
     { id: 5, title: "Entertainment", amount: 200 },
 ];
-export const expenseRoute = new Hono()
+export const expensesRoute = new Hono()
 .get("/", (c) => {
     return c.json({expenses: fakeExpensesData})
 })
