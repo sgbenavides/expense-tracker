@@ -8,15 +8,15 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/ui/table.tsx"
+import { Skeleton } from "@/components/ui/skeleton.tsx";
 
 
 import { useQuery } from "@tanstack/react-query";
 
-import { api } from "@/lib/api";
+import { api } from "@/lib/api.ts";
 
-export const Route = createFileRoute('/expenses')({
+export const Route = createFileRoute('/_authenticated/expenses')({
     component: Expenses,
 })
 

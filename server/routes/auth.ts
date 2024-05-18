@@ -1,6 +1,6 @@
 import {Hono} from "hono"
 import {z} from "zod"
-import {kindeClient, sessionManager} from "../kinde.ts";
+import {getUser, kindeClient, sessionManager} from "../kinde.ts";
 
 
 const expenseSchema = z.object({
@@ -31,11 +31,7 @@ export const authRoute = new Hono()
         const logoutUrl = await kindeClient.logout(sessionManager(c));
         return c.redirect(logoutUrl.toString());
     })
-    .get('/me', async (c) => {
-        const isAuthenticated = await kindeClient.isAuthenticated(sessionManager(c)); // Boolean: true or false
-        if (!isAuthenticated) {
-            return c.json({ isAuthenticated: true });
-        } else {
-            return c.json({ isAuthenticated: false });
-        }
-    })
+    .get("/me", getUser, async (c) => {
+        const user = c.var.user
+        return c.json({user});
+    });

@@ -1,13 +1,13 @@
 import {createFileRoute, useNavigate} from '@tanstack/react-router'
 import {useForm} from '@tanstack/react-form'
 
-import {Input} from "@/components/ui/input"
-import {Label} from "@/components/ui/label"
-import {Button} from "@/components/ui/button"
+import {Input} from "@/components/ui/input.tsx"
+import {Label} from "@/components/ui/label.tsx"
+import {Button} from "@/components/ui/button.tsx"
 
-import {api} from "@/lib/api";
+import {api} from "@/lib/api.ts";
 
-export const Route = createFileRoute('/create-expense')({
+export const Route = createFileRoute('/_authenticated/create-expense')({
     component: CreateExpense
 })
 
