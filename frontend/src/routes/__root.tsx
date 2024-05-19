@@ -1,5 +1,5 @@
 import {createRootRouteWithContext, Link, Outlet,} from "@tanstack/react-router";
-// import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner"
 import {type QueryClient} from "@tanstack/react-query";
 
 // import { TanStackRouterDevtools } from '@tanstack/router-devtools'
@@ -42,7 +42,7 @@ function Root() {
             <div className="p-2 max-w-2xl m-auto">
                 <Outlet/>
             </div>
-            {/*<Toaster />*/}
+            <Toaster />
             {/* <TanStackRouterDevtools /> */}
         </>
     );
