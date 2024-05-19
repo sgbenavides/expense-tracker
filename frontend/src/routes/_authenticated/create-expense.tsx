@@ -15,8 +15,9 @@ function CreateExpense() {
     const navigate = useNavigate()
     const form = useForm({
         defaultValues: {
-            firstName: '',
-            lastName: '',
+            title: "",
+            amount: "0",
+            date: new Date().toISOString(),
         },
         onSubmit: async ({value}) => {
             const res = await api.expenses.$post({json: value})
@@ -67,7 +68,7 @@ function CreateExpense() {
                             <Input id={field.name} placeholder="Amount" name={field.name}
                                    value={field.state.value}
                                    onBlur={field.handleBlur}
-                                   onChange={(e) => field.handleChange(Number(e.target.value))}/>
+                                   onChange={(e) => field.handleChange(e.target.value)}/>
                             <>
                                 {field.state.meta.touchedErrors ? (
                                     <em>{field.state.meta.touchedErrors}</em>
